@@ -1,0 +1,4 @@
+Logging:
+  level:
+    br:
+      messias: DEBUG
