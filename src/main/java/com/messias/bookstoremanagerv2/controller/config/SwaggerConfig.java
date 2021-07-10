@@ -1,4 +1,4 @@
-package com.messias.bookstoremanagerv2.config;
+package com.messias.bookstoremanagerv2.controller.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
