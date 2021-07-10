@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.messias.bookstoremanagerv2.author.entity.Author;
+import com.messias.bookstoremanagerv2.entity.Auditable;
 import com.messias.bookstoremanagerv2.publishere.entity.Publishere;
 import com.messias.bookstoremanagerv2.user.entity.User;
 
@@ -16,7 +17,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Book {
+public class Book extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

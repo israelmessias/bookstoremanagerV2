@@ -12,9 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.messias.bookstoremanagerv2.book.entity.Book;
+import com.messias.bookstoremanagerv2.entity.Auditable;
 
 @Entity
-public class Publishere {
+public class Publishere extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

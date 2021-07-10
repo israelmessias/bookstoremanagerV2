@@ -14,10 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.messias.bookstoremanagerv2.book.entity.Book;
+import com.messias.bookstoremanagerv2.entity.Auditable;
 import com.messias.bookstoremanagerv2.user.enums.Gender;
 
 @Entity
-public class User {
+public class User extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
