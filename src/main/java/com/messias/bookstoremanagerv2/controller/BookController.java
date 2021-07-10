@@ -16,6 +16,6 @@ public class BookController {
     })
     @GetMapping
     public String mensage(){
-        return "Hello World";
+        return "Hello Boook Store Manager!!!😃";
     }
 }
