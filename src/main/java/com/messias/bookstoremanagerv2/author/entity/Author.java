@@ -12,11 +12,12 @@ import javax.persistence.OneToMany;
 
 import com.messias.bookstoremanagerv2.book.entity.Book;
 
+import com.messias.bookstoremanagerv2.entity.Auditable;
 import lombok.Data;
 
 @Data
 @Entity
-public class Author {
+public class Author extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
