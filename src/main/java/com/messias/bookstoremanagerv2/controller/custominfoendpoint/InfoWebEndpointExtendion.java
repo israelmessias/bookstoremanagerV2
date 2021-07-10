@@ -1,9 +1,8 @@
-package com.messias.bookstoremanagerv2.custominfoendpoint;
+package com.messias.bookstoremanagerv2.controller.custominfoendpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.web.WebEndpointResponse;
 import org.springframework.boot.actuate.endpoint.web.annotation.EndpointWebExtension;
-import org.springframework.boot.actuate.endpoint.web.annotation.WebEndpoint;
 import org.springframework.boot.actuate.info.InfoEndpoint;
 import org.springframework.stereotype.Component;
 
