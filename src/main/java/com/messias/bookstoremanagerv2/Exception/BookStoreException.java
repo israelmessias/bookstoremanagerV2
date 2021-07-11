@@ -21,7 +21,8 @@ import java.util.List;
 public class BookStoreException extends ResponseEntityExceptionHandler {
 
     /*
-    * Caso faça uma busca e não tiver o elemento pesquisado, o erro ira entrar nessa classe*/
+    * Caso faça uma busca e não tiver o elemento pesquisado,
+    * o erro ira entrar nessa classe e retornara uma resposta customizada*/
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException exception){
         return builderResponseEntity(HttpStatus.NOT_FOUND,
