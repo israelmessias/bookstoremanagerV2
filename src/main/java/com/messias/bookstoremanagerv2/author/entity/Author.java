@@ -18,6 +18,10 @@ import lombok.Data;
 @Data
 @Entity
 public class Author extends Auditable {
+    /*
+    Foi criado a entidade de dados Autor 
+     Com os id, nome, idade, e a ista de livros*/
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
