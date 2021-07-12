@@ -19,6 +19,11 @@ import com.messias.bookstoremanagerv2.user.enums.Gender;
 
 @Entity
 public class User extends Auditable {
+    /*
+    *Entidades de dados usuario, com os campos id, nome, idade,
+    *sexo(Masculino e Feminino, Enum), nome de usuario, senha,
+    *data de nascimento, lista de livros.
+    */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
