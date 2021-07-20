@@ -11,12 +11,12 @@ public class AuthorDTOBuilder {
     private final Long id = 1L;
 
     @Builder.Default
-    private final String nome = "Israel Messias";
+    private final String name = "Israel Messias";
 
     @Builder.Default
-    private final int age = 19; 
+    private final int age = 17;
 
-    public AuthorDTO buildAuthorDTO(){
-        return new AuthorDTO(id, nome, age);
-    }
-}
+    public AuthorDTO buildAuthorDTO() {
+        return new AuthorDTO(id, name, age);
+
+    }    }

@@ -43,7 +43,8 @@ public class BookStoreException extends ResponseEntityExceptionHandler {
         return super.handleMethodArgumentNotValid(ex, headers, status, request);
     }
 
-    private ResponseEntity<Object> builderResponseEntity(HttpStatus httpStatus, String message, List<String> erros){
+
+    public ResponseEntity<Object> builderResponseEntity(HttpStatus httpStatus, String message, List<String> erros){
         ApiException apiException = ApiException.builder()
                 .code(httpStatus.value())
                 .status(httpStatus.getReasonPhrase())

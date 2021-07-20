@@ -1,14 +1,21 @@
 package com.messias.bookstoremanagerv2.author.service;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 import com.messias.bookstoremanagerv2.author.builder.AuthorDTOBuilder;
 import com.messias.bookstoremanagerv2.author.dto.AuthorDTO;
+import com.messias.bookstoremanagerv2.author.entity.Author;
 import com.messias.bookstoremanagerv2.author.map.AuthorMapper;
 import com.messias.bookstoremanagerv2.author.repository.AuthorRepository;
 
+import org.hamcrest.core.IsEqual;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,5 +34,23 @@ public class AutoServiceTest {
     @BeforeEach
     void setUp(){
         authorDTOBuilder = AuthorDTOBuilder.builder().build();
+    }
+
+    //Quando o novo autor for informado, então deve ser criado
+    @Test
+    void whenNewAuthorIsInformedThenItShouldBeCreated() {
+        //dados
+        AuthorDTO expectdAuthorDTO =  authorDTOBuilder.buildAuthorDTO();
+        Author expectedCreatedAuthor = authorMapper.toModel(expectdAuthorDTO);
+
+        //quando expectedCreatedAuthor(toModel()) for salvo retornara expectedCreatedAuthor
+        Mockito.when(authorRepository.save(expectedCreatedAuthor))
+        .thenReturn(expectedCreatedAuthor);
+
+        AuthorDTO createdAuthorDTO = authorService.create(expectdAuthorDTO);
+
+        //então ele confirma se createdAuthorDTO
+        assertThat(createdAuthorDTO,
+                is(IsEqual.equalTo(expectdAuthorDTO)));
     }
 }

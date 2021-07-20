@@ -14,5 +14,5 @@ public interface AuthorMapper {
      e um DTO para uma entidade*/
     Author toModel(AuthorDTO authorDTO);
 
-    AuthorDTO tODto(Author author);
+    AuthorDTO tODTO(Author author);
 }
