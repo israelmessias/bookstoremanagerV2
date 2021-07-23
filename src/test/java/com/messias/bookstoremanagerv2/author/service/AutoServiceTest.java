@@ -1,14 +1,15 @@
 package com.messias.bookstoremanagerv2.author.service;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-
 import com.messias.bookstoremanagerv2.author.builder.AuthorDTOBuilder;
 import com.messias.bookstoremanagerv2.author.dto.AuthorDTO;
 import com.messias.bookstoremanagerv2.author.entity.Author;
 import com.messias.bookstoremanagerv2.author.map.AuthorMapper;
 import com.messias.bookstoremanagerv2.author.repository.AuthorRepository;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.Is;
 import org.hamcrest.core.IsEqual;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,11 +47,9 @@ public class AutoServiceTest {
         //quando expectedCreatedAuthor(toModel()) for salvo retornara expectedCreatedAuthor
         Mockito.when(authorRepository.save(expectedCreatedAuthor))
         .thenReturn(expectedCreatedAuthor);
-
         AuthorDTO createdAuthorDTO = authorService.create(expectdAuthorDTO);
 
         //então ele confirma se createdAuthorDTO
-        assertThat(createdAuthorDTO,
-                is(IsEqual.equalTo(expectdAuthorDTO)));
+        MatcherAssert.assertThat(createdAuthorDTO, Is.is(IsEqual.equalTo(expectdAuthorDTO)));
     }
 }

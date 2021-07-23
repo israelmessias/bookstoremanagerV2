@@ -29,7 +29,9 @@ public class AuthorControllerTest {
 
     @BeforeEach
     void setUp() {
+        //Chamou o construtor
         authorDTOBuilder = AuthorDTOBuilder.builder().build();
+        //Receber o controller
         mockMvc = MockMvcBuilders.standaloneSetup(authorController).
         setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver()).
                 setViewResolvers(((viewName, locale) -> new MappingJackson2JsonView()))

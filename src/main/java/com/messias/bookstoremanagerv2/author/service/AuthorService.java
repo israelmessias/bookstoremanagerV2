@@ -16,17 +16,17 @@ public class AuthorService {
     private AuthorRepository authorRepository;
 
     @Autowired
-    public AuthorService(AuthorRepository authorRepository){
+    public AuthorService(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
 
     /*Classe recebe authorDTO, tranforma o authorDTO -> author, atraves do .toMOdel()
-    * depois salva o author convertido. E por final author -> authorDTO com .toDTO
-    */
-    public AuthorDTO create(AuthorDTO authorDTO){
-       Author authorToCreate = authorMapper.toModel(authorDTO);
-       Author createdAuthor = authorRepository.save(authorToCreate);
-       return authorMapper.tODTO(createdAuthor);
-    }
+     * depois salva o author convertido. E por final author -> authorDTO com .toDTO
+     */
+    public AuthorDTO create(AuthorDTO authorDTO) {
+        Author authorToCreate = authorMapper.toModel(authorDTO);
+        Author createdAuthor = authorRepository.save(authorToCreate);
+        return authorMapper.tODTO(createdAuthor);
 
+    }
 }
