@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public enum Gender {
 
-    MALE,
-    FEMALE;
+    MALE("Male"),
+    FEMALE("Female");
 
     private String description;
 }
