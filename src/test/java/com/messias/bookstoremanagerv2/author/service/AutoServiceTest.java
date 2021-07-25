@@ -11,11 +11,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.assertj.core.error.AssertionErrorCreator;
+import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsEqual;
@@ -47,40 +49,35 @@ public class AutoServiceTest {
         authorDTOBuilder = AuthorDTOBuilder.builder().build();
     }
 
-    //Quando o novo autor for informado, então deve ser criado
+    //Quando o novo autor é informado, ele deve ser criado
     @Test
-    void whenNewAuthorIsInformedThenItShouldBeCreated() {
-        //dados
-        AuthorDTO expectdAuthorDTO =  authorDTOBuilder.buildAuthorDTO();
-        Author expectedCreatedAuthor = authorMapper.toModel(expectdAuthorDTO);
+    void whenNewAuthorIsInformedThenItShouldBeCreated()
+     {
+        //given
+        AuthorDTO expectedAuthorToCreateDTO = authorDTOBuilder.buildAuthorDTO();
+        Author expectedCreatedAuthor = authorMapper.toModel(expectedAuthorToCreateDTO);
 
-        //quando expectedCreatedAuthor(toModel()) for salvo retornara expectedCreatedAuthor
-        Mockito.when(authorRepository.save(expectedCreatedAuthor))
-            .thenReturn(expectedCreatedAuthor);
-        Mockito.when(authorRepository.findByName(expectedCreatedAuthor.getNome()))
-            .thenReturn(Optional.empty());
-        AuthorDTO createdAuthorDTO = authorService.create(expectdAuthorDTO);
+        //when
+        when(authorRepository.save(expectedCreatedAuthor)).thenReturn(expectedCreatedAuthor);
+        when(authorRepository.findByName(expectedAuthorToCreateDTO.getNome())).thenReturn(Optional.empty());
 
-        //então ele confirma se createdAuthorDTO
-        MatcherAssert.assertThat(createdAuthorDTO, 
-        Is.is(IsEqual.equalTo(expectdAuthorDTO)));
+        AuthorDTO createdAuthorDTO = authorService.create(expectedAuthorToCreateDTO);
+
+        //then
+        assertThat(createdAuthorDTO, Is.is(expectedAuthorToCreateDTO));
     }
 
-    /*Teste para confirmar mensagem de erro customizada,
-    quando um nome é repetido no author.
-    */
+    //Quando o autor existente é informado, então uma exceção deve ser lançada
     @Test
-    void whenExistingAuthorIsInformedThenAnExceptionShouldBeThrown() {
-        //dados
-        AuthorDTO expectdAuthorDTO =  authorDTOBuilder.buildAuthorDTO();
-        Author expectedCreatedAuthor = authorMapper.toModel(expectdAuthorDTO);
+    void whenExistingAuthorIsInformedThenAnExceptionShouldBeThrown()
+     {
+        AuthorDTO expectedAuthorToCreateDTO = authorDTOBuilder.buildAuthorDTO();
+        Author expectedCreatedAuthor = authorMapper.toModel(expectedAuthorToCreateDTO);
 
-        //quando expectedCreatedAuthor(toModel()) for salvo retornara expectedCreatedAuthor
-        Mockito.when(authorRepository.findByName(expectedCreatedAuthor.getNome()))
-            .thenReturn(Optional.of(expectedCreatedAuthor));
+        when(authorRepository.findByName(expectedAuthorToCreateDTO.getNome()))
+                .thenReturn(Optional.of(expectedCreatedAuthor));
 
-        Assert.assertThrows(AuthorAlreadyExistsException.class, 
-        () -> authorService.create(expectdAuthorDTO));
+        Assert.assertThrows(AuthorAlreadyExistsException.class, () -> authorService.create(expectedAuthorToCreateDTO));
     }
-    
+
 }
