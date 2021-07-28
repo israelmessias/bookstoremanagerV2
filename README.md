@@ -1,7 +1,7 @@
-# <img src="Dimensões personalizadas 500x250 px.jpeg">
+ <img src="Dimensões personalizadas 500x250 px.jpeg">
 
-#  <h1 align=center>BookstoreManager Version 2 
-##  <h3 align=center>Segunda versão de um projeto Bookstoremanager
+  <h1 align=center>BookstoreManager Version 2 
+  <h3 align=center>Segunda versão de um projeto Bookstoremanager
 
 ##  Objetivo📓:
 REST API que simula uma loja de livros. Neste projeto foi utilizado varias do __Spring Boot e outras tecnologias__. O principal intuito é criar um projeto "completo", com documentação(swagger), deploy no heroku, testes unitarios e o pradão de projeto REST.
